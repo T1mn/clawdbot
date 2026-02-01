@@ -35,5 +35,8 @@ export function parseDurationMs(raw: string, opts?: DurationMsParseOptions): num
   if (!Number.isFinite(ms)) {
     throw new Error(`invalid duration: ${raw}`);
   }
+  if (ms === 0 && value !== 0) {
+    throw new Error(`duration too small: ${raw} (rounds to 0ms)`);
+  }
   return ms;
 }
